@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -39,36 +40,60 @@ public class LogService {
              e.printStackTrace();
          }
     }
-
-    public List<String> readLogFile(String logFileName) {
-        List<String> logEntries = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(logDirectory + "/" + logFileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                logEntries.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return logEntries;
-    }
     
-    public void deleteLogFile(String logFileName) {
-        try {
-            Files.delete(Paths.get(logDirectory + "/" + logFileName));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void deleteLogFile(String input) {
+    	Pattern pattern = Pattern.compile(input);
+    	File dir = new File(logDirectory);
+
+        // Check if the directory exists
+        if (dir.exists() && dir.isDirectory()) {
+            File[] logFiles = dir.listFiles();
+
+            if (logFiles != null) {
+                for (File logFile : logFiles) {
+                    if (pattern.matcher(logFile.getName()).find()) {
+                        try {
+                            Files.delete(Paths.get(logFile.getPath()));
+                            System.out.println("Deleted log file: " + logFile.getName());
+                        } catch (IOException e) {
+                            System.err.println("Failed to delete log file: " + logFile.getName());
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        } else {
+            System.out.println("Log directory does not exist.");
         }
     }
 
-    public void moveLogFile(String logFileName, String targetDirectory) {
-    	String newDirectory = logDirectory + "/" + targetDirectory;
-        createLogDirectory(newDirectory);
-        try {
-            Files.move(Paths.get(logDirectory + "/" + logFileName), Paths.get(newDirectory + "/" + logFileName), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void moveLogFile(String input, String targetDirectory) {
+    	 String newDirectory = logDirectory + "/" + targetDirectory;
+    	    createLogDirectory(newDirectory);
+
+    	    Pattern pattern = Pattern.compile(input);
+    	    File dir = new File(logDirectory);
+
+    	    if (dir.exists() && dir.isDirectory()) {
+                File[] logFiles = dir.listFiles();
+
+                if (logFiles != null) {
+                    for (File logFile : logFiles) {
+                        if (pattern.matcher(logFile.getName()).find()) {
+                            try {
+                            	Files.move(Paths.get(logDirectory + "/" + logFile.getName()), 
+                                        Paths.get(newDirectory + "/" + logFile.getName()), 
+                                        StandardCopyOption.REPLACE_EXISTING);
+                            } catch (IOException e) {
+                                System.err.println("Failed to move log file: " + logFile.getName());
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            } else {
+                System.out.println("Log directory does not exist.");
+            }
     }
 
     public void archiveLogFile(String logFileName) {

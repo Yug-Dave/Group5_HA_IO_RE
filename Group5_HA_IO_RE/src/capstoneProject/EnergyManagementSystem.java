@@ -44,7 +44,7 @@ public class EnergyManagementSystem {
                     break;
 
                 case 2:
-                	System.out.print("Enter log file name to move: ");
+                	System.out.print("Enter equipment name or date or log file name to move: ");
                     String fileToMove = scanner.nextLine();
                     System.out.print("Enter target directory name to move: ");
                     String targetDirectory = scanner.nextLine();
@@ -53,7 +53,7 @@ public class EnergyManagementSystem {
                     break;
                     
                 case 3:
-                    System.out.print("Enter log file name to delete: ");
+                    System.out.print("Enter equipment name or date or log file name to delete: ");
                     String fileToDelete = scanner.nextLine();
                     logService.deleteLogFile(fileToDelete);
                     System.out.println("Log file deleted.");
