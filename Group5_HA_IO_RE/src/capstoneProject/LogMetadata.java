@@ -7,6 +7,8 @@ public class LogMetadata {
     private LocalDate date;
     private String equipmentName;
     private String energySource;
+    private String EachDayOfEachChargingStation;
+    
 
     public LogMetadata(String equipmentName, String energySource) {
         this.date = LocalDate.now();
@@ -33,7 +35,31 @@ public class LogMetadata {
 
     public String getEnergySource() {
         return energySource;
+    }   
+    public String getChargingStation() {
+    	return EachDayOfEachChargingStation;
     }
 }
 //hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
