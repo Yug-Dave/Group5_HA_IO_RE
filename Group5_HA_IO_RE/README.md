@@ -10,12 +10,12 @@ This project is an **Energy Management System (EMS)** designed to manage and sim
 - **User Interaction**: Allows users to perform various operations like log file retrieval based on equipment name or date.
 - **Archiving System**: Log files can be archived into ZIP files.
 
-## Folder Structure
+## Role Distribution and Folder Structure
 ```
 Group5_HA_IO_RE/src 
-├── LogMetadata.java
-├── LogService.java
-└── EnergyManagementSystem.java
+├── LogMetadata.java (Amir Hossein Pakdel - 7221789)
+├── LogService.java (Yug Dharmeshkumar Dave - 7222111)
+└── EnergyManagementSystem.java (Hadis Delbord - 7222043)
 ```
 
 ### Class Descriptions
