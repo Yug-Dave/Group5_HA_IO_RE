@@ -40,7 +40,6 @@ public class LogMetadata {
     	return EachDayOfEachChargingStation;
     }
 }
-//hello
 
 
 
