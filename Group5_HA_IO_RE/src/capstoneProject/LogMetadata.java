@@ -17,9 +17,17 @@ public class LogMetadata {
         this.energySource = energySource;
         this.logFileName = createLogFileName();
     }
+    
+    public LogMetadata(String EachDayOfEachChargingStation, String equipmentName, String energySource) {
+        this.date = LocalDate.now();
+        this.EachDayOfEachChargingStation = EachDayOfEachChargingStation;
+        this.equipmentName = equipmentName;
+        this.energySource = energySource;
+        this.logFileName = createLogFileName();
+    }
 
     private String createLogFileName() {
-        return String.format("%s_%s_%s.log", equipmentName, energySource, date);
+        return String.format("%s_%s_%s_%s.log",EachDayOfEachChargingStation, equipmentName, energySource, date);
     }
 
     public String getLogFileName() {
@@ -40,6 +48,7 @@ public class LogMetadata {
     public String getChargingStation() {
     	return EachDayOfEachChargingStation;
     }
+
 }
 
 
