@@ -10,6 +10,7 @@ public class LogMetadata {
     private String EachDayOfEachChargingStation;
     
 
+    
     public LogMetadata(String equipmentName, String energySource) {
         this.date = LocalDate.now();
         this.equipmentName = equipmentName;
