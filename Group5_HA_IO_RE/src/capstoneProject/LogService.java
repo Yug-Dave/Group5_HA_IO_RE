@@ -28,6 +28,8 @@ public class LogService {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logDirectory + "/" + metadata.getLogFileName(), true))) {
         	writer.write(content);
              writer.newLine();
+             writer.write("Charging Station: " + metadata.getChargingStation());
+             writer.newLine();
              writer.write("Equipment Name: " + metadata.getEquipmentName());
              writer.newLine();
              writer.write("Energy Source: " + metadata.getEnergySource());
