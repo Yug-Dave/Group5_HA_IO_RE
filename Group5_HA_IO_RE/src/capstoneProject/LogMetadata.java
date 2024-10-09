@@ -9,15 +9,6 @@ public class LogMetadata {
     private String energySource;
     private String EachDayOfEachChargingStation;
     
-
-    
-    public LogMetadata(String equipmentName, String energySource) {
-        this.date = LocalDate.now();
-        this.equipmentName = equipmentName;
-        this.energySource = energySource;
-        this.logFileName = createLogFileName();
-    }
-    
     public LogMetadata(String EachDayOfEachChargingStation, String equipmentName, String energySource) {
         this.date = LocalDate.now();
         this.EachDayOfEachChargingStation = EachDayOfEachChargingStation;
